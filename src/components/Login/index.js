@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 function Login() {
-  let token = "a36e128ff50a7c474b49e93ba6cafb93995362c9";
+  let token = "3aa4703a2e89ce407242ff0ff946e846563c39f8";
 
-  const [loginName, setLoginName] = useState(null);
+  const [reposUrl, setReposUrl] = useState(null);
   const [repos, setRepos] = useState(null);
 
   const fetchLoginName = async () => {
@@ -16,26 +16,25 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setLoginName(data.login);
-        console.log(loginName);
+        setReposUrl(data.repos_url);
       });
-
-    await fetch(`https://api.github.com/users/${loginName}/repos`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setRepos(data);
-        console.log(repos);
-      });
+    if (reposUrl !== null) {
+      await fetch(reposUrl, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setRepos(data);
+        });
+    }
   };
   useEffect(() => {
     fetchLoginName();
-  });
+  }, [reposUrl]);
 
   return (
     <>
