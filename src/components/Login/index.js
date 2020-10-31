@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function Login() {
-  let token = "3aa4703a2e89ce407242ff0ff946e846563c39f8";
+  let token = "**********";
 
   const [reposUrl, setReposUrl] = useState(null);
   const [repos, setRepos] = useState(null);
