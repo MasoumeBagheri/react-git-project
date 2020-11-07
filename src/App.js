@@ -1,24 +1,30 @@
-import React /* , { useState } */ from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Repos from "./components/Repos";
 import SingleRepo from "./components/SingleRepo";
 
+export const GlobalContext = React.createContext();
+
 function App() {
-  const owner = useSelector((state) => state.repos.owner);
+  const [owner, setOwner] = useState(null);
+  function getLoginName(loginName) {
+    setOwner(loginName);
+  }
   return (
-    <BrowserRouter>
-      <Header />
-      <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Route path="/Repos" component={Repos} />
-        <Route path={`/${owner}/:repoName`} component={SingleRepo} />
-      </Switch>
-    </BrowserRouter>
+    <GlobalContext.Provider value={{ getLoginName, owner }}>
+      <BrowserRouter>
+        <Header />
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/Repos" component={Repos} />
+          <Route path={`/${owner}/:repoName`} component={SingleRepo} />
+        </Switch>
+      </BrowserRouter>
+    </GlobalContext.Provider>
   );
 }
 

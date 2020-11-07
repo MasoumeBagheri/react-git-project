@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Repos() {
+function Login() {
   return (
     <>
       <h1>Home Page</h1>
@@ -10,4 +10,4 @@ function Repos() {
   );
 }
 
-export default Repos;
+export default Login;
