@@ -13,7 +13,6 @@ function Languages({ languagesUrl }) {
     };
     fetchLanguages();
   }, []);
-  console.log(languages);
 
   const sumFnc = () => {
     let sum = 0;
@@ -22,8 +21,6 @@ function Languages({ languagesUrl }) {
     }
     return sum;
   };
-  const sumVal = sumFnc();
-  console.log(sumVal);
 
   return (
     <>
@@ -32,7 +29,7 @@ function Languages({ languagesUrl }) {
         {languages &&
           Object.keys(languages).map((language) => {
             return (
-              <li>{`${language} ${(
+              <li key={languages[language]}>{`${language} ${(
                 (languages[language] * 100) /
                 sumFnc()
               ).toFixed(1)}%`}</li>
