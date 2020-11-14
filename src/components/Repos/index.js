@@ -5,7 +5,7 @@ import { GlobalContext } from "../../App";
 function Repos() {
   const { getLoginName } = React.useContext(GlobalContext);
 
-  let token = "****************************";
+  let token = "e08f1121ae1f539a2b4c711da06bb5d6a10af43b";
 
   const [reposUrl, setReposUrl] = useState(null);
   const [loginName, setLoginName] = useState(null);
@@ -52,10 +52,9 @@ function Repos() {
       {repos &&
         repos.map((repo) => {
           return (
-            <>
-              <Link to={`/${loginName}/${repo.name}`}>{repo.name}</Link>
-              <br />
-            </>
+            <Link key={repo.id} to={`/${loginName}/${repo.name}`}>
+              <h3>{repo.name}</h3>
+            </Link>
           );
         })}
     </>
