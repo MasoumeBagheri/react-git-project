@@ -5,7 +5,7 @@ import { GlobalContext } from "../../App";
 function Repos() {
   const { getLoginName } = React.useContext(GlobalContext);
 
-  let token = "e08f1121ae1f539a2b4c711da06bb5d6a10af43b";
+  let token = "*******************************";
 
   const [reposUrl, setReposUrl] = useState(null);
   const [loginName, setLoginName] = useState(null);
